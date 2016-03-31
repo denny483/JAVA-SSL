@@ -25,11 +25,18 @@ public class SSLClient {
 
       OutputStreamWriter out = new OutputStreamWriter(s.getOutputStream());
       BufferedWriter writer = new BufferedWriter(out);
-
+      InputStreamReader serverin = new InputStreamReader(s.getInputStream());
+      BufferedReader serverreader = new BufferedReader(serverin);
       String str = null;
       while ((str = reader.readLine()) != null) {
         writer.write(str + '\n');
         writer.flush();
+        if(true)break;
+      }
+      str = null;
+      while ((str = serverreader.readLine()) != null) {
+        System.out.println(str);
+        System.out.flush();
       }
     } catch (Exception e) {
       e.printStackTrace();
